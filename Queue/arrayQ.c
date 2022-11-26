@@ -1,6 +1,5 @@
 #include<stdio.h>
 #include<stdlib.h>
-
 #define size 3
 
 int q[size];
@@ -46,7 +45,7 @@ int main()
 
 int add(){
     int data;
-    printf("Enter the data: %d ", (rear + 1) % size);
+    printf("Enter the data:");
     scanf("%d",&data);
     if((rear+1)%size == front){
         printf("stack is full \n",rear,front);
@@ -80,6 +79,6 @@ int removeEle(){
     {
         printf("Queue is empty \n");
     }
-    printf("data: %d \n",q[rear]);
+    printf("removed data: %d \n",q[rear]);
     rear = (rear-1)%size;
 }
