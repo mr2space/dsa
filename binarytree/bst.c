@@ -21,7 +21,6 @@ struct node *Postorder(struct node *p);
 struct node *Preorder(struct node *p);
 void countf(struct node *p);
 struct node *deletion(struct node *p, int x);
-struct node *Delnode(struct node *p, int x);
 
 int main()
 {
@@ -90,15 +89,6 @@ struct node *Inorder(struct node *p)
     {
         Inorder(p->l);
         printf("%3d ", p->data);
-        Inorder(p->r);
-    }
-}
-
-void countf(struct node *p)
-{
-    if (p != NULL)
-    {
-        Inorder(p->l);
         Inorder(p->r);
     }
 }
