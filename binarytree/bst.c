@@ -1,13 +1,15 @@
 #include <stdio.h>
-#include<stdlib.h> 
+#include <stdlib.h>
 
 struct node
 {
     int data;
     struct node *l, *r;
 };
+
 struct node *tree = NULL;
-struct node *create(){
+struct node *create()
+{
     return (struct node *)malloc(sizeof(struct node));
 }
 
@@ -18,10 +20,14 @@ struct node *Inorder(struct node *p);
 struct node *Postorder(struct node *p);
 struct node *Preorder(struct node *p);
 void countf(struct node *p);
+struct node *deletion(struct node *p, int x);
+struct node *Delnode(struct node *p, int x);
+
 int main()
 {
     printf("----------------- BST -------------------------------\n");
     int ch;
+    int x;
     while (1)
     {
         printf("\n");
@@ -30,8 +36,9 @@ int main()
         printf("2.Inorder \n");
         printf("3.Preorder \n");
         printf("4.Postorder \n");
-        printf("5.exit \n");
-        printf("6.count \n");
+        printf("5.delete the node \n");
+        printf("6.exit \n");
+        printf("7.count \n");
         printf("\n");
         printf("Enter the number: ");
         scanf("%d", &ch);
@@ -42,6 +49,10 @@ int main()
             addBst();
             break;
         case 2:
+            if(tree == NULL){
+                printf("tree is empty \n");
+                break;
+            }
             Inorder(tree);
             printf("\n");
             break;
@@ -54,12 +65,18 @@ int main()
             printf("\n");
             break;
         case 5:
-            exit(0);
-        case 6:
-            Inorder(tree);
-            printf("\n count is : %d ",count);
+            printf("Enter the element: ");
+            scanf("%d", &x);
+            tree = deletion(tree, x);
             break;
-        default : printf("Invalid Char");
+        case 6:
+            exit(0);
+        case 7:
+            Inorder(tree);
+            printf("\n count is : %d ", count);
+            break;
+        default:
+            printf("Invalid Char");
             break;
         }
     }
@@ -72,7 +89,6 @@ struct node *Inorder(struct node *p)
     if (p != NULL)
     {
         Inorder(p->l);
-        count++;
         printf("%3d ", p->data);
         Inorder(p->r);
     }
@@ -83,7 +99,6 @@ void countf(struct node *p)
     if (p != NULL)
     {
         Inorder(p->l);
-        count++;
         Inorder(p->r);
     }
 }
@@ -143,4 +158,47 @@ int addBst()
 
     pn->r = temp;
     return 0;
+}
+
+struct node *deletion(struct node *p, int x)
+{
+    if(p==NULL) return NULL;
+    struct node *temp, *min;
+    if (p->data > x)
+    {
+        p->l = deletion(p->l, x);
+    }
+    else if (p->data < x)
+    {
+        p->r = deletion(p->r, x);
+    }
+    else
+    {
+        if (p->l == NULL && p->r == NULL)
+        {
+            free(p);
+            return NULL;
+        }
+        else if (p->l == NULL)
+        {
+            temp = p->r;
+            free(p);
+            return temp;
+        }
+        else if (p->r == NULL)
+        {
+            temp = p->l;
+            free(p);
+            return temp;
+        }
+        min = p->r;
+        while (min->l != NULL)
+        {
+            min = min->l;
+        }
+        p->data = min->data;
+        p->r = deletion(p->r, min->data);
+        
+    }
+    return p;
 }
