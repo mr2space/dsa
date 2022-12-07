@@ -37,7 +37,7 @@ int main()
         printf("4.Postorder \n");
         printf("5.delete the node \n");
         printf("6.exit \n");
-        printf("7.count \n");
+        printf("7.External count \n");
         printf("\n");
         printf("Enter the number: ");
         scanf("%d", &ch);
@@ -71,8 +71,7 @@ int main()
         case 6:
             exit(0);
         case 7:
-            Inorder(tree);
-            printf("\n count is : %d ", count);
+            printf("Count is %d \n", InternalNode(tree));
             break;
         default:
             printf("Invalid Char");
@@ -191,4 +190,21 @@ struct node *deletion(struct node *p, int x)
         
     }
     return p;
+}
+
+
+int ExternalNode(struct node * p){
+    if(p == NULL) return 0;
+    if(p->l == NULL && p->r == NULL){
+        return 1;
+    }else{
+        return ExternalNode(p->l) + ExternalNode(p->r);
+    }
+}
+
+int InternalNode(struct node * p){
+    if(p == NULL) return 0;
+    if(p->l != NULL || p->r != NULL){
+        return InternalNode(p->r) + InternalNode(p->l) + 1;
+    }
 }
