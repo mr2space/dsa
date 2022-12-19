@@ -1,0 +1,1 @@
+merge_sort(arr, 0,size);
