@@ -18,6 +18,7 @@ int main(){
         printf("1.insertion\n");
         printf("2.display\n");
         printf("3.exit\n");
+        printf("4.sort\n");
         printf("Enter your choice: ");
         scanf("%d",&ch);
         switch(ch){
@@ -29,6 +30,7 @@ int main(){
         case 2: display(A);
                 break;
         case 3: exit(0);
+        case 4:heapSort(A);
         default: printf("invalid char \n");
         }
     }
@@ -86,3 +88,25 @@ int display(int A[]){
     printf("\n");
 }
 
+int delete(int A[]){
+    // swap root with last
+    swap(&A[size-1],&A[0]);
+    // call reheap for root
+    size--;
+    reheap(A,0);
+}
+
+
+int heapSort(int A[]){
+    //declaration
+    int i=0;
+    int temp = size;
+    //loop till size == 0
+    while(size>=0){
+        delete(A);
+    }
+    //restoring value of size
+    size = temp;
+    //calling display
+    display(A);
+}
