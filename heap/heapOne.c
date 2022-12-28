@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <stdlib.h>
+#include <stdlib.h> 
 
 int size = 0;
 int swap(int *A, int *B);
@@ -15,10 +15,9 @@ int main()
     int A[100];
     int size = 0;
     int ch = 0;
-
     while (1)
     {
-        printf("\n -------------- Heap ----------------\n");
+        printf("\n ******************* Heap **********************\n");
         printf("\t 1. Add element \n");
         printf("\t 2. display element \n");
         printf("\t 3. delete element \n");
@@ -44,7 +43,7 @@ int main()
         case 10:
             exit(0);
         default:
-            printf("\n --------- invalid case ----------\n");
+            printf("\n ***************** invalid case ************************ \n");
         }
     }
     return 0;

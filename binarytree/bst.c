@@ -24,13 +24,11 @@ struct node *deletion(struct node *p, int x);
 
 int main()
 {
-    printf("----------------- BST -------------------------------\n");
+    printf("********** BST ************\n");
     int ch;
     int x;
     while (1)
     {
-        printf("\n");
-        printf("\n");
         printf("1.ADD in tree \n");
         printf("2.Inorder \n");
         printf("3.Preorder \n");
